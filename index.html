@@ -569,91 +569,159 @@
             margin-right: 0.5rem;
         }
         
-        /* Why Choose Us */
-        .why-us {
+        /* About Section - New Design */
+        .about {
             padding: 6rem 5%;
-            background: var(--dark);
-        }
-        
-        .why-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-        
-        .why-image {
+            background: linear-gradient(135deg, var(--dark) 0%, var(--dark-light) 100%);
             position: relative;
-            border-radius: 20px;
             overflow: hidden;
         }
         
-        .why-image img {
-            width: 100%;
-            height: 500px;
-            object-fit: cover;
-        }
-        
-        .experience-badge {
+        .about::before {
+            content: '';
             position: absolute;
-            bottom: 2rem;
-            right: 2rem;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
             background: var(--primary);
-            color: white;
-            padding: 1.5rem 2rem;
-            border-radius: 16px;
+            opacity: 0.03;
+            border-radius: 50%;
+            filter: blur(100px);
+        }
+        
+        .about-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .about-header {
             text-align: center;
+            margin-bottom: 3rem;
         }
         
-        .experience-badge .years {
-            font-size: 3rem;
+        .about-header h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
             font-weight: 800;
-            display: block;
-            line-height: 1;
+            margin-bottom: 0.5rem;
         }
         
-        .why-content h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
+        .about-subtitle {
+            color: var(--primary);
+            font-size: 1.1rem;
+            font-weight: 500;
         }
         
-        .why-content > p {
+        .about-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+        }
+        
+        .about-intro p {
             color: var(--text-muted);
-            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
         }
         
-        .features-list {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
+        .about-intro strong {
+            color: var(--primary);
+            font-weight: 600;
         }
         
-        .feature-item {
-            display: flex;
-            gap: 1rem;
-            align-items: flex-start;
+        .about-features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 3rem;
         }
         
-        .feature-icon {
-            width: 50px;
-            height: 50px;
+        .about-feature-card {
+            background: var(--dark-lighter);
+            border: 1px solid var(--gray);
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .about-feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--primary);
+            transform: scaleX(0);
+            transition: transform 0.4s;
+        }
+        
+        .about-feature-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .about-feature-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(230, 57, 70, 0.1);
+        }
+        
+        .about-feature-card .feature-icon {
+            width: 70px;
+            height: 70px;
             background: var(--gray);
-            border-radius: 10px;
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 1.8rem;
             color: var(--primary);
-            font-size: 1.2rem;
-            flex-shrink: 0;
+            margin: 0 auto 1.5rem;
+            transition: all 0.3s;
         }
         
-        .feature-text h4 {
-            margin-bottom: 0.3rem;
+        .about-feature-card:hover .feature-icon {
+            background: var(--primary);
+            color: white;
+            transform: rotateY(360deg);
         }
         
-        .feature-text p {
+        .about-feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+        
+        .about-feature-card p {
             color: var(--text-muted);
-            font-size: 0.9rem;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+        
+        .about-closing {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(230, 57, 70, 0.1) 0%, rgba(230, 57, 70, 0.05) 100%);
+            border-radius: 16px;
+            border: 1px solid var(--gray);
+        }
+        
+        .about-closing p {
+            color: var(--text);
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+        
+        .about-closing strong {
+            color: var(--primary);
+            font-weight: 600;
         }
         
         /* CTA Section */
@@ -903,13 +971,8 @@
                 max-width: 100%;
             }
             
-            .why-grid,
             .contact-grid {
                 grid-template-columns: 1fr;
-            }
-            
-            .why-image img {
-                height: 300px;
             }
             
             /* Services Split Layout Mobile */
@@ -945,6 +1008,11 @@
             .sidebar-book-btn {
                 margin: 1rem;
             }
+            
+            /* About Section Mobile */
+            .about-features-grid {
+                grid-template-columns: 1fr;
+            }
         }
         
         @media (max-width: 768px) {
@@ -956,16 +1024,6 @@
             .hero-stats {
                 flex-direction: column;
                 gap: 1.5rem;
-            }
-            
-            .experience-badge {
-                bottom: 1rem;
-                right: 1rem;
-                padding: 1rem 1.5rem;
-            }
-            
-            .experience-badge .years {
-                font-size: 2rem;
             }
             
             .service-detail-image {
@@ -991,6 +1049,10 @@
             .service-list-nav li {
                 border-right: none;
                 border-bottom: 1px solid var(--gray);
+            }
+            
+            .about-feature-card {
+                padding: 2rem;
             }
         }
         
@@ -1193,58 +1255,48 @@
         </div>
     </section>
 
-    <!-- Why Choose Us -->
-    <section class="why-us" id="about">
-        <div class="container">
-            <div class="why-grid">
-                <div class="why-image fade-in">
-                    <img src="https://images.unsplash.com/photo-1625047509168-a7026f36de04?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Mechanic at work">
-                    <div class="experience-badge">
-                        <span class="years">20+</span>
-                        <span>Years</span>
+    <!-- About Section - New Content -->
+    <section class="about" id="about">
+        <div class="about-container">
+            <div class="about-header fade-in">
+                <h2>Welcome to Qulifix Automotive</h2>
+                <p class="about-subtitle">Expert Service You Can Trust</p>
+            </div>
+            
+            <div class="about-intro fade-in">
+                <p>
+                    With over <strong>20 years of hands-on experience</strong> working in different countries, our team has built a deep understanding of vehicle servicing, repairs, and WoF inspections. This international experience allows us to deliver professional, reliable, and high-quality service for every vehicle that comes through our doors.
+                </p>
+            </div>
+            
+            <div class="about-features-grid">
+                <div class="about-feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-heart"></i>
                     </div>
+                    <h3>Customer First</h3>
+                    <p>At Qulifix Automotive, customer satisfaction always comes first—not profit. We treat every car like it's our own, providing honest advice and workmanship you can trust.</p>
                 </div>
                 
-                <div class="why-content fade-in">
-                    <span class="section-tag">Why Choose Us</span>
-                    <h2>Trusted by Hamilton Drivers</h2>
-                    <p>
-                        With over 20 years of hands-on experience working in different countries, 
-                        our team delivers professional, reliable, and high-quality service for every vehicle.
-                    </p>
-                    
-                    <div class="features-list">
-                        <div class="feature-item">
-                            <div class="feature-icon">
-                                <i class="fas fa-heart"></i>
-                            </div>
-                            <div class="feature-text">
-                                <h4>Customer First</h4>
-                                <p>Customer satisfaction always comes first, not profit. We treat every car like our own.</p>
-                            </div>
-                        </div>
-                        
-                        <div class="feature-item">
-                            <div class="feature-icon">
-                                <i class="fas fa-car"></i>
-                            </div>
-                            <div class="feature-text">
-                                <h4>Free Pick-up & Drop-off</h4>
-                                <p>Convenient service with free pick-up and drop-off for your busy schedule.</p>
-                            </div>
-                        </div>
-                        
-                        <div class="feature-item">
-                            <div class="feature-icon">
-                                <i class="fas fa-shield-alt"></i>
-                            </div>
-                            <div class="feature-text">
-                                <h4>Quality Guaranteed</h4>
-                                <p>All repairs backed by our satisfaction guarantee and warranty.</p>
-                            </div>
-                        </div>
+                <div class="about-feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-car-side"></i>
                     </div>
+                    <h3>Free Pick-up & Drop-off</h3>
+                    <p>We know life is busy, so we offer free pick-up and drop-off services to make vehicle servicing as convenient as possible. Your car is cared for safely from start to finish.</p>
                 </div>
+                
+                <div class="about-feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h3>Our Goal</h3>
+                    <p>To be Hamilton's most trusted automotive service, combining experience, reliability, and customer-focused care in every service we provide.</p>
+                </div>
+            </div>
+            
+            <div class="about-closing fade-in">
+                <p>Your car is cared for safely from start to finish, giving you <strong>peace of mind</strong> while you go about your day.</p>
             </div>
         </div>
     </section>
