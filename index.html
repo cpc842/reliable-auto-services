@@ -241,6 +241,7 @@
             flex-wrap: wrap;
         }
         
+        /* Hero Stats with Animation */
         .hero-stats {
             display: flex;
             gap: 3rem;
@@ -251,6 +252,7 @@
         
         .stat {
             text-align: left;
+            position: relative;
         }
         
         .stat-number {
@@ -258,6 +260,17 @@
             font-weight: 800;
             color: var(--primary);
             display: block;
+            line-height: 1;
+            margin-bottom: 0.3rem;
+        }
+        
+        .stat-number.counting {
+            animation: pulse 0.1s ease;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
         }
         
         .stat-label {
@@ -1054,17 +1067,18 @@
                 </a>
             </div>
             
+            <!-- Hero Stats with Count Up Animation -->
             <div class="hero-stats">
                 <div class="stat">
-                    <span class="stat-number">20+</span>
+                    <span class="stat-number" data-target="20" data-suffix="+">0</span>
                     <span class="stat-label">Years Experience</span>
                 </div>
                 <div class="stat">
-                    <span class="stat-number">5k+</span>
+                    <span class="stat-number" data-target="5" data-suffix="k+">0</span>
                     <span class="stat-label">Happy Customers</span>
                 </div>
                 <div class="stat">
-                    <span class="stat-number">100%</span>
+                    <span class="stat-number" data-target="100" data-suffix="%">0</span>
                     <span class="stat-label">Satisfaction</span>
                 </div>
             </div>
@@ -1343,6 +1357,56 @@
                 navbar.classList.remove('scrolled');
             }
         });
+        
+        // Count Up Animation for Stats
+        const countUp = (element, target, suffix, duration = 2000) => {
+            let startTime = null;
+            const startValue = 0;
+            
+            // Easing function (easeOutQuart)
+            const easeOutQuart = (t) => 1 - Math.pow(1 - t, 4);
+            
+            const animate = (currentTime) => {
+                if (!startTime) startTime = currentTime;
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const easedProgress = easeOutQuart(progress);
+                
+                const currentValue = Math.floor(easedProgress * target);
+                element.textContent = currentValue + suffix;
+                element.classList.add('counting');
+                
+                if (progress < 1) {
+                    requestAnimationFrame(animate);
+                } else {
+                    element.textContent = target + suffix;
+                    element.classList.remove('counting');
+                }
+            };
+            
+            requestAnimationFrame(animate);
+        };
+        
+        // Intersection Observer for Count Up Animation
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statNumbers = entry.target.querySelectorAll('.stat-number');
+                    statNumbers.forEach(stat => {
+                        const target = parseInt(stat.getAttribute('data-target'));
+                        const suffix = stat.getAttribute('data-suffix');
+                        countUp(stat, target, suffix, 2500);
+                    });
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        // Observe hero stats section
+        const heroStats = document.querySelector('.hero-stats');
+        if (heroStats) {
+            statsObserver.observe(heroStats);
+        }
         
         // Fade in animation on scroll
         const observerOptions = {
