@@ -71,18 +71,34 @@
             align-items: center;
         }
         
+        /* LOGO STYLES - Replace 'your-logo.png' with your actual logo file */
         .logo {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: var(--text);
-            text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            text-decoration: none;
         }
         
-        .logo span {
-            color: var(--primary);
+        .logo img {
+            height: 50px;
+            width: auto;
+            max-width: 200px;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+        
+        .logo:hover img {
+            transform: scale(1.05);
+        }
+        
+        /* If you need a background for your logo */
+        .logo-with-bg {
+            background: white;
+            padding: 8px 16px;
+            border-radius: 12px;
+        }
+        
+        .logo-with-bg img {
+            height: 40px;
         }
         
         .nav-links {
@@ -915,13 +931,17 @@
             gap: 2rem;
         }
         
+        /* FOOTER LOGO STYLES */
         .footer-logo {
-            font-size: 1.5rem;
-            font-weight: 800;
+            display: flex;
+            align-items: center;
         }
         
-        .footer-logo span {
-            color: var(--primary);
+        .footer-logo img {
+            height: 40px;
+            width: auto;
+            max-width: 180px;
+            object-fit: contain;
         }
         
         .footer-links {
@@ -1013,6 +1033,11 @@
             .about-features-grid {
                 grid-template-columns: 1fr;
             }
+            
+            /* Logo mobile adjustments */
+            .logo img {
+                height: 40px;
+            }
         }
         
         @media (max-width: 768px) {
@@ -1054,6 +1079,11 @@
             .about-feature-card {
                 padding: 2rem;
             }
+            
+            /* Logo smaller on mobile */
+            .logo img {
+                height: 35px;
+            }
         }
         
         /* Animations */
@@ -1074,9 +1104,15 @@
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
+            <!-- LOGO SECTION - Replace 'your-logo.png' with your actual logo file -->
             <a href="#" class="logo">
-                <i class="fas fa-wrench"></i>
-                Quli<span>fix</span>
+                <!-- Option 1: Direct image (recommended) -->
+                <img src="your-logo.png" alt="Qulifix Automotive">
+                
+                <!-- Option 2: If you need white background for logo -->
+                <!-- <div class="logo-with-bg">
+                    <img src="your-logo.png" alt="Qulifix Automotive">
+                </div> -->
             </a>
             
             <ul class="nav-links">
@@ -1382,8 +1418,9 @@
     <!-- Footer -->
     <footer>
         <div class="footer-content">
+            <!-- FOOTER LOGO - Replace 'your-logo.png' with your actual logo file -->
             <div class="footer-logo">
-                Quli<span>fix</span> Automotive
+                <img src="your-logo.png" alt="Qulifix Automotive">
             </div>
             
             <div class="footer-links">
